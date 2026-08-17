@@ -1,11 +1,40 @@
 import { Platform } from "react-native";
 import { getApiBaseUrl } from "@/constants/oauth";
 import * as Auth from "./auth";
+import { getConnectionErrorMessage } from "@/shared/reliability";
 
 type ApiResponse<T> = {
   data?: T;
   error?: string;
 };
+
+const REQUEST_TIMEOUT_MS = 15000;
+const RETRYABLE_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
+
+async function fetchWithReliability(url: string, init: RequestInit, timeoutMs = REQUEST_TIMEOUT_MS): Promise<Response> {
+  const method = (init.method ?? "GET").toUpperCase();
+  const canRetry = method === "GET" || method === "HEAD";
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= (canRetry ? 1 : 0); attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(url, { ...init, signal: controller.signal });
+      if (canRetry && RETRYABLE_STATUS.has(response.status) && attempt === 0) {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        continue;
+      }
+      return response;
+    } catch (error) {
+      lastError = error;
+      if (!canRetry || attempt > 0) break;
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+  throw new Error(getConnectionErrorMessage(lastError));
+}
 
 export async function apiCall<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const headers: Record<string, string> = {
@@ -41,7 +70,7 @@ export async function apiCall<T>(endpoint: string, options: RequestInit = {}): P
 
   try {
     console.log("[API] Making request...");
-    const response = await fetch(url, {
+    const response = await fetchWithReliability(url, {
       ...options,
       headers,
       credentials: "include",

@@ -20,3 +20,12 @@
 - [ ] Add deterministic tests for core state and persistence behavior
 - [x] Run typecheck, lint, tests, and visual verification
 - [ ] Save final checkpoint and deliver project
+
+- [x] Audit supplied APK and AAB metadata, package configuration, permissions, and build identity
+- [x] Audit startup, navigation, image generation, upload, download, share, and persistence flows for crash risks
+- [x] Add explicit network timeout, retry, offline, and human-readable failure states
+- [x] Remove or isolate native-only imports that can crash web or unsupported platforms
+- [x] Add deterministic tests for reliability-critical state and service boundaries
+- [ ] Validate Android build configuration and downloadable artifact workflow
+- [x] Re-run typecheck, lint, tests, and preview verification after hardening
+- [ ] Save hardened checkpoint and provide the downloadable project

@@ -32,3 +32,20 @@
 
 - [x] Diagnose installed APK startup failure and identify release-specific crash cause
 - [ ] Fix APK startup failure and validate a new Android release build
+
+- [ ] Write updated publishing guide for corrected Android build
+- [ ] Include fresh-build, uninstall/reinstall, device validation, and Play release steps
+
+- [ ] Prepare Amazon Appstore metadata and submission values
+- [ ] Guide Amazon Appstore APK upload, testing, and final submission
+
+- [x] Create separate Amazon Appstore icon assets at the required dimensions
+- [x] Create Amazon Appstore tablet screenshots and promotional image assets
+- [x] Validate asset dimensions, formats, and upload naming instructions
+
+- [ ] Replace placeholder Amazon privacy-policy URL with a real public HTTPS policy page
+- [ ] Complete Amazon target-audience selection and verify the green completion status
+- [ ] Recheck Amazon Upload Your App File completion status before submitting
+
+- [x] Create public AI Image Studio privacy-policy page
+- [ ] Verify privacy-policy URL is publicly reachable for Amazon Appstore

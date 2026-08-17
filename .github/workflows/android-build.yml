@@ -60,7 +60,7 @@ jobs:
   build:
     name: Build Android artifact with EAS
     needs: validate
-    if: ${{ github.event_name == 'workflow_dispatch' && secrets.EXPO_TOKEN != '' }}
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -83,6 +83,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Require EAS token
+        if: ${{ env.EXPO_TOKEN == '' }}
+        run: |
+          echo "Add EXPO_TOKEN under repository Settings > Secrets and variables > Actions before running a build."
+          exit 1
 
       - name: Build Android artifact
         env:

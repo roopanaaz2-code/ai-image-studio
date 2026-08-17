@@ -49,3 +49,17 @@
 
 - [x] Create public AI Image Studio privacy-policy page
 - [ ] Verify privacy-policy URL is publicly reachable for Amazon Appstore
+
+- [ ] Add secure server-side text-to-image generation flow
+- [ ] Add secure reference-image upload and image-to-image generation flow
+- [ ] Add generation job state, timeout, retry, quota, and provider-error handling
+- [ ] Add moderation and safe-use validation for prompts and uploaded images
+- [ ] Add production backend tests and Android release validation for real generation
+
+- [ ] Prepare GitHub source repository workflow for AI Image Studio
+- [ ] Document reproducible APK/AAB build and signing workflow
+- [ ] Preserve package name and signing identity for future Amazon updates
+
+- [ ] Audit public-source commit for secrets, signing credentials, and private artifacts
+- [ ] Push AI Image Studio source to the authorized public GitHub repository
+- [ ] Verify public repository contents and document APK/AAB build path

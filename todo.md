@@ -29,3 +29,6 @@
 - [ ] Validate Android build configuration and downloadable artifact workflow
 - [x] Re-run typecheck, lint, tests, and preview verification after hardening
 - [ ] Save hardened checkpoint and provide the downloadable project
+
+- [x] Diagnose installed APK startup failure and identify release-specific crash cause
+- [ ] Fix APK startup failure and validate a new Android release build

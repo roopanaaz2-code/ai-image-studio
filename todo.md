@@ -60,6 +60,11 @@
 - [ ] Document reproducible APK/AAB build and signing workflow
 - [ ] Preserve package name and signing identity for future Amazon updates
 
-- [ ] Audit public-source commit for secrets, signing credentials, and private artifacts
-- [ ] Push AI Image Studio source to the authorized public GitHub repository
-- [ ] Verify public repository contents and document APK/AAB build path
+- [x] Audit public-source commit for secrets, signing credentials, and private artifacts
+- [x] Push AI Image Studio source to the authorized public GitHub repository
+- [x] Verify public repository contents and document APK/AAB build path
+
+- [ ] Add custom GitHub Actions Android validation and build workflow
+- [ ] Add reproducible Android build configuration without committing secrets
+- [ ] Validate and publish the workflow to GitHub
+- [ ] Document protected secrets and workflow run/download steps
